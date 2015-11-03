@@ -2,7 +2,11 @@
 
 Repository used for implementation of stuff around kie server, extensions and such.
 
-- ping-example: 
+ping-example: 
+- 
 Minimalistic extension for kie server. So far implemented just REST interface.
-Testing URL: http://localhost:<port>/<context root>/services/rest/server/containers/1/hello/<name>
+
+Testing URL:    
+http://localhost:`<port>`/`<context root>`/services/rest/server/containers/1/hello/`<some name>`
+
 Installation: copy built jars to WEB-INF/lib folder of kie server.
