@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.kie.server</groupId>
+  <artifactId>ping-example</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>KIE :: Execution Server :: Example Ping Extension</name>
+  <description>KIE Ping Extension</description>
+
+  <properties>
+    <kie.server.version>6.4.0-SNAPSHOT</kie.server.version>
+    <jaxrs.version>2.3.10.Final</jaxrs.version>
+  </properties>
+
+  <modules>
+    <module>ping-service</module>
+    <module>ping-rest</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- BOM -->
+      <dependency>
+        <groupId>org.drools</groupId>
+        <artifactId>drools-bom</artifactId>
+        <version>${kie.server.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.logging</groupId>
+        <artifactId>jboss-logging</artifactId>
+        <version>3.1.4.GA</version>
+      </dependency>
+
+      <!-- Project dependencies -->
+      <dependency>
+        <groupId>org.kie.server</groupId>
+        <artifactId>ping-service</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.kie.server</groupId>
+        <artifactId>ping-rest</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <!-- JAX RS dependencies -->
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>jaxrs-api</artifactId>
+        <version>${jaxrs.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.3</version>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
