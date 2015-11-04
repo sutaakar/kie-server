@@ -12,6 +12,9 @@ import org.kie.server.services.api.KieServerRegistry;
 import org.kie.server.services.api.SupportedTransports;
 import org.kie.server.services.impl.KieServerImpl;
 
+/**
+ * Extension class representing this whole extension, is loaded by kie server using service loader.
+ */
 public class PingExtension implements KieServerExtension {
 
     public static final String EXTENSION_NAME = "Ping";

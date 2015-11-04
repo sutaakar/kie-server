@@ -10,6 +10,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.kie.server.services.ping.PingService;
 
+/**
+ * Simple REST resource.
+ */
 @Path("server/containers/{id}")
 public class PingResource {
 

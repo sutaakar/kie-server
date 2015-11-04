@@ -10,6 +10,9 @@ import org.kie.server.services.api.SupportedTransports;
 import org.kie.server.services.ping.PingExtension;
 import org.kie.server.services.ping.PingService;
 
+/**
+ * Allows to get resource classes using service loader.
+ */
 public class PingRestApplicationComponentsService implements KieServerApplicationComponentsService {
 
     private static final String OWNER_EXTENSION = PingExtension.EXTENSION_NAME;
@@ -33,7 +36,7 @@ public class PingRestApplicationComponentsService implements KieServerApplicatio
         if( SupportedTransports.REST.equals(type) ) {
             components.add(new PingResource(pingService));
         }
-        
+
         return components;
     }
 
