@@ -38,12 +38,10 @@ public class PingExtension implements KieServerExtension {
 
     @Override
     public void createContainer(String id, KieContainerInstance kieContainerInstance, Map<String, Object> parameters) {
-        kieContainerInstance.addService(pingService);
     }
 
     @Override
     public void disposeContainer(String id, KieContainerInstance kieContainerInstance, Map<String, Object> parameters) {
-        kieContainerInstance.removeService(PingService.class);
     }
 
     @Override
