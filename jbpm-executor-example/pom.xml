@@ -35,12 +35,7 @@
       <artifactId>jbpm-shared-services</artifactId>
     </dependency>
 
-    <!-- Helper dependencies for test. -->
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-persistence-jpa</artifactId>
-      <scope>test</scope>
-    </dependency>
+    <!-- Helper dependencies to setup pooling DataSource. -->
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-persistence-jpa</artifactId>
