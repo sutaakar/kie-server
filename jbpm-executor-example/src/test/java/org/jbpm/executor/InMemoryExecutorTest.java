@@ -67,12 +67,6 @@ public class InMemoryExecutorTest {
         RequestInfo completedJob = completedJobList.get(0);
         assertEquals(STATUS.DONE, completedJob.getStatus());
         assertEquals("org.jbpm.executor.commands.PrintOutCommand", completedJob.getCommandName());
-
-        // Retrieve job result data.
-        byte[] responseData = completedJob.getResponseData();
-        ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(responseData));
-        ExecutionResults results = (ExecutionResults) in.readObject();
-        Map<String, Object> resultData = results.getData();
     }
 
     @Test
@@ -100,5 +94,32 @@ public class InMemoryExecutorTest {
         assertEquals(businessKey, completedJob.getKey());
         assertEquals(STATUS.DONE, completedJob.getStatus());
         assertEquals("org.jbpm.executor.commands.PrintOutCommand", completedJob.getCommandName());
+    }
+
+    @Test
+    public void executeCustomTask() throws Exception {
+        String businessKey = UUID.randomUUID().toString();
+
+        CommandContext ctxCMD = new CommandContext();
+        ctxCMD.setData("businessKey", businessKey);
+        ctxCMD.setData("request", "Jack");
+
+        Long jobId = executorService.scheduleRequest("org.jbpm.executor.model.SimpleCustomCommand", ctxCMD);
+        assertNotNull(jobId);
+
+        Thread.sleep(4000);
+
+        // Retrieve info about completed jobs.
+        List<RequestInfo> completedJobList = executorService.getCompletedRequests(new QueryContext());
+        assertEquals(1, completedJobList.size());
+
+        // Retrieve job result data.
+        byte[] responseData = completedJobList.get(0).getResponseData();
+        ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(responseData));
+        ExecutionResults results = (ExecutionResults) in.readObject();
+        Map<String, Object> resultData = results.getData();
+
+        String response = (String) resultData.get("result");
+        assertEquals("echo Jack", response);
     }
 }
